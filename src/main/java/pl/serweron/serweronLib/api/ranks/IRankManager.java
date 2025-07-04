@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IRankManager {
+
+    // Player's options
     IRankPlayer getRankPlayer(UUID uuid);
     IRank getPlayerHighestRank(IRankPlayer player);
     boolean playerHasRank(UUID uuid, String rankName);
     boolean playerHasPermission(UUID uuid, String permission);
+    // Player prefix/suffix (by weight)
     String getPlayerPrefix(UUID uuid);
     String getPlayerSuffix(UUID uuid);
 

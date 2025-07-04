@@ -1,23 +1,21 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 group = "pl.serweron"
 version = "1.0"
 
 plugins {
     java
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.17"
-    id("com.gradleup.shadow") version "9.0.0-beta4"
     id("io.freefair.lombok") version "8.13.1"
     id("maven-publish")
 }
 
 publishing {
     publications {
-        create<MavenPublication>("shadow") {
-            artifact(tasks.shadowJar.get())
+        create<MavenPublication>("mavenJava") {
             groupId = group.toString()
             artifactId = project.name
             version = version
+
+            from(components["java"])
         }
     }
 
@@ -58,22 +56,3 @@ dependencies {
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.7-R0.1-SNAPSHOT")
 }
 
-tasks.assemble {
-    dependsOn(tasks.reobfJar)
-}
-
-tasks.publish {
-    dependsOn(tasks.shadowJar)
-}
-
-
-tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveClassifier.set("")
-        base.archivesName = "SerweronLib"
-    }
-
-    named("reobfJar") {
-        dependsOn("shadowJar")
-    }
-}
