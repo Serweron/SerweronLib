@@ -5,10 +5,10 @@ import java.util.List;
 public interface IRankPlayer extends IUser {
     // Player's own prefix
     String getPrefix();
-    String setPrefix(String prefix, int weight);
+    void setPrefix(String prefix, int weight);
     // Player's own suffix
     String getSuffix();
-    String setSuffix(String suffix, int weight);
+    void setSuffix(String suffix, int weight);
 
     // Player permissions
     List<String> getPermissions();
