@@ -1,1 +1,1 @@
-rootProject.name = "SerweronCore"
+rootProject.name = "SerweronLib"
