@@ -1,0 +1,6 @@
+name: SerweronLib
+version: '1.0'
+main: pl.serweron.serweronLib.SerweronLib
+api-version: '1.21'
+authors: [MasnyPen]
+website: serweron.pl
