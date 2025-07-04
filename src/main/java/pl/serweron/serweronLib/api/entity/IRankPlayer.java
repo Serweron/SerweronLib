@@ -1,6 +1,4 @@
-package pl.serweron.serweronLib.api.ranks;
-
-import pl.serweron.serweronLib.api.entity.IUser;
+package pl.serweron.serweronLib.api.entity;
 
 import java.util.List;
 

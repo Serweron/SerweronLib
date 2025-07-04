@@ -24,11 +24,11 @@ public enum SColor {
     Black(15, "Black", Material.BLACK_DYE, new Color(29, 29, 33));
 
     @Getter
-    private int id;
+    private final int id;
     @Getter
-    private String name;
+    private final String name;
     @Getter
-    private Material material;
+    private final Material material;
     @Getter
     private Color color;
 

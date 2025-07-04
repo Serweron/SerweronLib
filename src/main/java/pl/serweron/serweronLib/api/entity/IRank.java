@@ -1,8 +1,5 @@
-package pl.serweron.serweronLib.api.ranks;
+package pl.serweron.serweronLib.api.entity;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public interface IRank {
