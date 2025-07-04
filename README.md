@@ -7,7 +7,7 @@ In your `build.gradle.kts`, add the Maven repository:
 ```kotlin
 repositories {
     maven {
-        url = uri("https://repo.reposilite.local/repository/maven-releases/")
+        url = uri("https://maven.pcreators.pl/releases")
         credentials {
             username = System.getenv("REPO_USER") ?: "guest"
             password = System.getenv("REPO_PASS") ?: "guest"
@@ -20,7 +20,7 @@ repositories {
 If you're using a -SNAPSHOT version, change the URL to:
 
 ```kotlin
-url = uri("https://repo.reposilite.local/repository/maven-snapshots/")
+url = uri("https://maven.pcreators.pl/snapshots")
 ```
 
 ## ✅ 2. Add the Dependency

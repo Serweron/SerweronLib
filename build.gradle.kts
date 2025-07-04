@@ -69,6 +69,7 @@ tasks.publish {
 
 tasks {
     named<ShadowJar>("shadowJar") {
+        archiveClassifier.set("")
         base.archivesName = "SerweronLib"
     }
 
