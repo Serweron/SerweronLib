@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.api.registry;
+package pl.serweron.serweronLib.registry;
 
 import lombok.Getter;
 import lombok.Setter;
