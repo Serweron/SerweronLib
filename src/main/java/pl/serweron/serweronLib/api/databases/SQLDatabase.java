@@ -2,10 +2,6 @@ package pl.serweron.serweronLib.api.databases;
 
 import java.sql.Connection;
 
-public interface SQLDatabase {
+public interface SQLDatabase extends Database {
     Connection getConnection();
-    boolean isConnected();
-
-    void connect();
-    void disconnect();
 }
