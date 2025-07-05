@@ -14,7 +14,7 @@ public abstract class Config {
     protected FileConfiguration config;
     protected File file;
 
-    public Config(File file) {
+    public void init(File file) {
         this.file = file;
         if (!file.exists()) {
             try {
@@ -27,6 +27,8 @@ public abstract class Config {
     }
 
     public void save() {
+        if (config == null) throw new NullPointerException("Config is null");
+
         try {
             config.save(file);
         } catch (IOException e) {
@@ -36,6 +38,7 @@ public abstract class Config {
     }
 
     public void reload() {
+        if (config == null) throw new NullPointerException("Config is null");
         this.config = YamlConfiguration.loadConfiguration(file);
     }
 
