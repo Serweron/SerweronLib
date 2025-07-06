@@ -10,7 +10,7 @@ public interface IRankManager {
 
     // Player's options
     IRankPlayer getRankPlayer(UUID uuid);
-    IRank getPlayerHighestRank(IRankPlayer player);
+    IRank getPlayerHighestRank(UUID uuid);
     boolean playerHasRank(UUID uuid, String rankName);
     boolean playerHasPermission(UUID uuid, String permission);
     // Player prefix/suffix (by weight)
