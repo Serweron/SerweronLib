@@ -1,6 +1,7 @@
 package pl.serweron.serweronLib.colors;
 
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 
 public enum ChatColor {
     BLACK("§0"),
@@ -24,10 +25,12 @@ public enum ChatColor {
     @Getter
     private final String code;
 
+
     ChatColor(String code) {
         this.code = code;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return code;

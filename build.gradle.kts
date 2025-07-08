@@ -1,5 +1,5 @@
 group = "pl.serweron"
-version = "1.1.3"
+version = "1.1.4"
 
 plugins {
     java
