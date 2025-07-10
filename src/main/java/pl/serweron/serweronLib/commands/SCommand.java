@@ -44,6 +44,15 @@ public abstract class SCommand extends Command {
     private String permissionMessage = "";
 
     /**
+     * Send a command usage to sender
+     *
+     * @param sender Command sender
+     */
+    private void sendUsage(CommandSender sender) {
+        sender.sendMessage(usageMessage.replace("{usage}", usage));
+    }
+
+    /**
      * Constructs a new {@code SCommand} instance.
      *
      * @param command     the command label (e.g., "home")

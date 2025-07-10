@@ -22,7 +22,10 @@ public class CommandHandler {
     /** Message shown when a user lacks permission to use a command. */
     private String permission_message;
 
-    /** Default usage format string to be shown when command usage is incorrect. */
+    /**
+     *  Default usage format string to be shown when command usage is incorrect.
+     *  Variables in string: {usage} - usage (change this in Command usage property)
+     */
     private String usage_format;
 
     /** Message displayed when a command is executed from console but requires a player. */
