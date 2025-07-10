@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Abstract class for custom configs in Yaml
+ */
 public abstract class Config {
     protected Logger logger = Logger.getLogger(Config.class.getName());
     @Getter
@@ -26,7 +29,9 @@ public abstract class Config {
      */
     public void init(File file, String resourcePath, JavaPlugin plugin) {
         this.file = file;
-        plugin.saveResource(resourcePath, false);
+        if (!file.exists()) {
+            plugin.saveResource(resourcePath, false);
+        }
         this.config = YamlConfiguration.loadConfiguration(file);
     }
 
