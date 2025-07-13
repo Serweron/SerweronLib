@@ -4,7 +4,7 @@ import org.bukkit.plugin.Plugin;
 import pl.serweron.serweronLib.api.databases.Database;
 import pl.serweron.serweronLib.api.managers.IRankManager;
 import pl.serweron.serweronLib.commands.CommandHandler;
-import pl.serweron.serweronLib.langs.LangManager;
+import pl.serweron.serweronLib.langs.SingleLangManager;
 
 /**
  * Represents the main contract for a core plugin that extends the Bukkit {@link Plugin} interface.
@@ -25,9 +25,9 @@ public interface CorePlugin extends Plugin {
     /**
      * Gets the language manager responsible for localization and message retrieval.
      *
-     * @return the {@link LangManager} instance
+     * @return the {@link SingleLangManager} instance
      */
-    LangManager getLangManager();
+    SingleLangManager getLangManager();
 
     /**
      * Gets the rank manager used to handle player ranks and permissions.
