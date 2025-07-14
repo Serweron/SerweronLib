@@ -1,6 +1,6 @@
-name: SerweronLib
-version: '1.0'
+name: "SerweronLib"
+version: ${pluginVersion}
 main: pl.serweron.serweronLib.SerweronLib
-api-version: '1.21'
+api-version: '${pluginAPI}'
 authors: [MasnyPen]
 website: serweron.pl

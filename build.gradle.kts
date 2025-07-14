@@ -1,5 +1,6 @@
 group = "pl.serweron"
 version = "1.1.5"
+val apiVersion = "1.21"
 
 plugins {
     java
@@ -55,4 +56,11 @@ dependencies {
 
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.7-R0.1-SNAPSHOT")
 }
+
+tasks.processResources {
+    outputs.upToDateWhen { false }
+    filteringCharset = Charsets.UTF_8.name()
+    expand("pluginVersion" to version, "pluginAPI" to apiVersion)
+}
+
 
