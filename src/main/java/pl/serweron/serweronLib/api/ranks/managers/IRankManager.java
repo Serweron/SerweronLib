@@ -1,7 +1,7 @@
-package pl.serweron.serweronLib.api.managers;
+package pl.serweron.serweronLib.api.ranks.managers;
 
-import pl.serweron.serweronLib.api.entity.IRankPlayer;
-import pl.serweron.serweronLib.api.entity.IRank;
+import pl.serweron.serweronLib.api.ranks.entity.IRankPlayer;
+import pl.serweron.serweronLib.api.ranks.entity.IRank;
 
 import java.util.List;
 import java.util.UUID;

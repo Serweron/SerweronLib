@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.api.entity;
+package pl.serweron.serweronLib.api.ranks.entity;
 
 import pl.serweron.serweronLib.ranks.MetaData;
 import pl.serweron.serweronLib.utils.Response;
