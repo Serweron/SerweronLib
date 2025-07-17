@@ -2,7 +2,7 @@ package pl.serweron.serweronLib.registry;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.serweron.serweronLib.api.managers.IRankManager;
+import pl.serweron.serweronLib.api.ranks.managers.IRankManager;
 
 /**
  * Provides static access to the {@link IRankManager} instance.
