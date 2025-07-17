@@ -42,9 +42,9 @@ public interface IRank {
      * Sets the weight (priority) of the rank.
      *
      * @param weight the new weight
-     * @return Response indicating success or error
+     * @return weight
      */
-    Response<String> setWeight(int weight);
+    Response<Integer> setWeight(int weight);
 
     // ─────────────────────────────────────────────────────────────
     // ░░░░░░░░░░ PERMISSIONS ░░░░░░░░░░
