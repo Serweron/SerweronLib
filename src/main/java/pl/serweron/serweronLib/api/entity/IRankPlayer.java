@@ -1,57 +1,40 @@
 package pl.serweron.serweronLib.api.entity;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import pl.serweron.serweronLib.ranks.MetaData;
+import pl.serweron.serweronLib.utils.Response;
+
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Represents a Player in Rank System
- * Including its UUID, name, prefix, suffix, weight, permissions, ranks
+ * Including its UUID, name, metada, weight, permissions, ranks
  */
 public interface IRankPlayer extends IUser {
 
     /**
-     * Gets the prefix of the player
+     * Gets Metadata of the player
      *
-     * @return the rank prefix
+     * @return the player metadata
      */
-    String getPrefix();
-
-    /**
-     * Sets the prefix of the player with a specified display weight.
-     *
-     * @param prefix the new prefix
-     * @param weight the weight to determine display priority
-     */
-    void setPrefix(String prefix, int weight);
-
-    /**
-     * Gets the suffix of the rank (e.g., displayed after a player's name).
-     *
-     * @return the rank suffix
-     */
-    String getSuffix();
-
-    /**
-     * Sets the suffix of the rank with a specified display weight.
-     *
-     * @param suffix the new suffix
-     * @param weight the weight to determine display priority
-     */
-    void setSuffix(String suffix, int weight);
+    MetaData getMetadata();
 
     /**
      * Adds a permission to the player.
      *
      * @param permission the permission to add
+     * @return Response
      */
-    void addPermission(String permission);
+    Response<String> addPermission(String permission);
 
     /**
      * Removes a permission from the player.
      *
      * @param permission the permission to remove
+     * @return Response
      */
-    void removePermission(String permission);
+    Response<String> removePermission(String permission);
 
     /**
      * Checks if the player has a specific permission.
@@ -74,22 +57,25 @@ public interface IRankPlayer extends IUser {
      * Sets the rank of the player
      *
      * @param rank the new rank
+     * @return Response
      */
-    void setRank(String rank);
+    Response<String> setRank(String rank);
 
     /**
      * Add a rank to the player
      *
      * @param rank the rank add
+     * @return Response
      */
-    void addRank(String rank);
+    Response<String> addRank(String rank);
 
     /**
      * Removes a rank from the player
      *
      * @param rank the rank remove
+     * @return Response
      */
-    void removeRank(String rank);
+    Response<String> removeRank(String rank);
 
     /**
      * Checks if the player has a specific rank.
@@ -98,5 +84,21 @@ public interface IRankPlayer extends IUser {
      * @return {@code true} if the player has rank , {@code false} otherwise
      */
     boolean hasRank(String rank);
+
+    /**
+     * Gets a ranks list
+     *
+     * @return Ranks list
+    */
     List<String> getAllRanks();
+
+    /**
+     * Convert IRankPlayer to {@link Player}
+     *
+     * @param rankPlayer Rank player
+     * @return Return a server player
+     */
+    static Player toPlayer(IRankPlayer rankPlayer) {
+        return Bukkit.getPlayer(rankPlayer.getUUID());
+    }
 }

@@ -1,9 +1,12 @@
 package pl.serweron.serweronLib.api.entity;
 
+import pl.serweron.serweronLib.ranks.MetaData;
+import pl.serweron.serweronLib.utils.Response;
+
 import java.util.List;
 
 /**
- * Represents a rank in Rank System, including its name, prefix, suffix, weight, and permissions.
+ * Represents a rank in Rank System, including its name, metada, weight, and permissions.
  */
 public interface IRank {
 
@@ -15,34 +18,11 @@ public interface IRank {
     String getName();
 
     /**
-     * Gets the prefix of the rank (e.g., displayed before a player's name).
+     * Gets Metadata of the ranks
      *
-     * @return the rank prefix
+     * @return the rank metada
      */
-    String getPrefix();
-
-    /**
-     * Sets the prefix of the rank with a specified display weight.
-     *
-     * @param prefix the new prefix
-     * @param weight the weight to determine display priority
-     */
-    void setPrefix(String prefix, int weight);
-
-    /**
-     * Gets the suffix of the rank (e.g., displayed after a player's name).
-     *
-     * @return the rank suffix
-     */
-    String getSuffix();
-
-    /**
-     * Sets the suffix of the rank with a specified display weight.
-     *
-     * @param suffix the new suffix
-     * @param weight the weight to determine display priority
-     */
-    void setSuffix(String suffix, int weight);
+    MetaData getMetadata();
 
     /**
      * Gets the weight of the rank.
@@ -57,22 +37,25 @@ public interface IRank {
      * Higher weight usually means higher priority or importance.
      *
      * @param weight the new weight of the rank
+     * @return Response
      */
-    void setWeight(int weight);
+    Response<String> setWeight(int weight);
 
     /**
      * Adds a permission to the rank.
      *
      * @param permission the permission to add
+     * @return Response
      */
-    void addPermission(String permission);
+    Response<String> addPermission(String permission);
 
     /**
      * Removes a permission from the rank.
      *
      * @param permission the permission to remove
+     * @return Response
      */
-    void removePermission(String permission);
+    Response<String> removePermission(String permission);
 
     /**
      * Checks if the rank has a specific permission.
