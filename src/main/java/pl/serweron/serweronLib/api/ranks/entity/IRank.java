@@ -1,74 +1,85 @@
 package pl.serweron.serweronLib.api.ranks.entity;
 
 import pl.serweron.serweronLib.ranks.MetaData;
+import pl.serweron.serweronLib.ranks.TimedPermission;
 import pl.serweron.serweronLib.utils.Response;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
- * Represents a rank in Rank System, including its name, metada, weight, and permissions.
+ * Represents a single rank definition in the system.
+ * A rank consists of its name, metadata, weight (priority), and assigned permissions.
+ * <p>
+ * Supports both permanent and time-limited permissions.
  */
 public interface IRank {
 
     /**
-     * Gets the name of the rank.
+     * Gets the unique name of the rank (e.g., "admin", "vip").
      *
-     * @return the name of the rank
+     * @return the rank's name
      */
     String getName();
 
     /**
-     * Gets Metadata of the ranks
+     * Gets the metadata associated with the rank.
+     * Metadata may include prefix, suffix, chat color, etc.
      *
-     * @return the rank metada
+     * @return metadata object
      */
     MetaData getMetadata();
 
     /**
-     * Gets the weight of the rank.
-     * Higher weight usually means higher priority or importance.
+     * Gets the weight (priority) of the rank.
+     * Higher weight means higher precedence in comparisons.
      *
-     * @return the weight of the rank
+     * @return numeric weight value
      */
     int getWeight();
 
     /**
-     * Sets the weight of the rank.
-     * Higher weight usually means higher priority or importance.
+     * Sets the weight (priority) of the rank.
      *
-     * @param weight the new weight of the rank
-     * @return Response
+     * @param weight the new weight
+     * @return Response indicating success or error
      */
     Response<String> setWeight(int weight);
 
+    // ─────────────────────────────────────────────────────────────
+    // ░░░░░░░░░░ PERMISSIONS ░░░░░░░░░░
+    // ─────────────────────────────────────────────────────────────
+
     /**
-     * Adds a permission to the rank.
+     * Adds a permanent permission to the rank.
      *
-     * @param permission the permission to add
-     * @return Response
+     * @param permission the permission node (e.g., "essentials.fly")
+     * @return Response indicating success or failure
      */
     Response<String> addPermission(String permission);
 
     /**
-     * Removes a permission from the rank.
+     * Removes a permanent permission from the rank.
      *
-     * @param permission the permission to remove
-     * @return Response
+     * @param permission the permission node
+     * @return Response indicating success or failure
      */
     Response<String> removePermission(String permission);
 
     /**
-     * Checks if the rank has a specific permission.
+     * Adds a time-limited permission to the rank.
      *
-     * @param permission the permission to check
-     * @return {@code true} if the rank has the permission, {@code false} otherwise
+     * @param permission permission node
+     * @param duration   duration the permission is valid
+     * @return Response indicating success or failure
      */
-    boolean hasPermission(String permission);
+    Response<String> addTemporaryPermission(String permission, Duration duration);
 
     /**
-     * Gets the list of permissions assigned to the rank.
+     * Checks if the rank has the specified permission.
      *
-     * @return a list of permissions
+     * @param permission the permission node to check
+     * @return true if found, false otherwise
      */
-    List<String> getPermissions();
+    boolean hasPermission(String permission);
 }

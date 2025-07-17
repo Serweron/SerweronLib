@@ -6,100 +6,115 @@ import pl.serweron.serweronLib.api.entity.IUser;
 import pl.serweron.serweronLib.ranks.MetaData;
 import pl.serweron.serweronLib.utils.Response;
 
-import java.util.List;
+import java.time.Duration;
 
 /**
- * Represents a Player in Rank System
- * Including its UUID, name, metada, weight, permissions, ranks
+ * Represents a player in the Rank System.
+ * A rank player can hold multiple ranks (permanent or temporary) and permissions.
+ * Inherits identity from {@link IUser}.
  */
 public interface IRankPlayer extends IUser {
 
     /**
-     * Gets Metadata of the player
+     * Gets the player's metadata (prefix, suffix, chat color, etc.).
      *
-     * @return the player metadata
+     * @return metadata object
      */
     MetaData getMetadata();
 
+    // ─────────────────────────────────────────────────────────────
+    // ░░░░░░░░░░ PERMISSIONS ░░░░░░░░░░
+    // ─────────────────────────────────────────────────────────────
+
     /**
-     * Adds a permission to the player.
+     * Adds a permanent permission to the player.
      *
-     * @param permission the permission to add
-     * @return Response
+     * @param permission permission node
+     * @return Response indicating success or error
      */
     Response<String> addPermission(String permission);
 
     /**
-     * Removes a permission from the player.
+     * Removes permission from the player.
      *
-     * @param permission the permission to remove
+     * @param permission permission node
      * @return Response
      */
     Response<String> removePermission(String permission);
 
     /**
-     * Checks if the player has a specific permission.
+     * Adds a temporary permission to the player for a specified duration.
      *
-     * @param permission the permission to check
-     * @return {@code true} if the rank has the permission, {@code false} otherwise
+     * @param permission permission node
+     * @param duration   how long the permission should last
+     * @return Response
+     */
+    Response<String> addTemporaryPermission(String permission, Duration duration);
+
+    /**
+     * Checks if the player has a permission.
+     *
+     * @param permission permission node
+     * @return true if player has the permission, false otherwise
      */
     boolean hasPermission(String permission);
 
-    /**
-     * Gets the list of permissions assigned to the player.
-     *
-     * @return a list of permissions
-     */
-    List<String> getPermissions();
-
-    // Player ranks
+    // ─────────────────────────────────────────────────────────────
+    // ░░░░░░░░░░ RANKS ░░░░░░░░░░
+    // ─────────────────────────────────────────────────────────────
 
     /**
-     * Sets the rank of the player
+     * Sets a permanent main rank for the player.
      *
-     * @param rank the new rank
+     * @param rank rank name
      * @return Response
      */
     Response<String> setRank(String rank);
 
     /**
-     * Add a rank to the player
+     * Adds a permanent rank to the player.
      *
-     * @param rank the rank add
+     * @param rank rank name
      * @return Response
      */
     Response<String> addRank(String rank);
 
     /**
-     * Removes a rank from the player
+     * Removes rank from the player.
      *
-     * @param rank the rank remove
+     * @param rank rank name
      * @return Response
      */
     Response<String> removeRank(String rank);
 
     /**
+     * Adds a temporary rank to the player for a specified duration.
+     *
+     * @param rank     rank name
+     * @param duration how long the rank should last
+     * @return Response
+     */
+    Response<String> addTemporaryRank(String rank, Duration duration);
+
+    /**
      * Checks if the player has a specific rank.
      *
-     * @param rank the rank to check
-     * @return {@code true} if the player has rank , {@code false} otherwise
+     * @param rank rank name
+     * @return true if assigned
      */
     boolean hasRank(String rank);
 
-    /**
-     * Gets a ranks list
-     *
-     * @return Ranks list
-    */
-    List<String> getAllRanks();
+    // ─────────────────────────────────────────────────────────────
+    // ░░░░░░░░░░ UTIL ░░░░░░░░░░
+    // ─────────────────────────────────────────────────────────────
 
     /**
-     * Convert IRankPlayer to {@link Player}
+     * Converts IRankPlayer to a live Bukkit Player instance.
+     * Returns null if player is offline.
      *
-     * @param rankPlayer Rank player
-     * @return Return a server player
+     * @return Bukkit Player or null
      */
-    static Player toPlayer(IRankPlayer rankPlayer) {
-        return Bukkit.getPlayer(rankPlayer.getUUID());
+    default Player getPlayer() {
+        return Bukkit.getPlayer(getUUID());
     }
 }

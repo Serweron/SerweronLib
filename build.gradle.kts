@@ -1,5 +1,5 @@
 group = "pl.serweron"
-version = "1.1.7"
+version = "1.1.8"
 val apiVersion = "1.21"
 
 plugins {
