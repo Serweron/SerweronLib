@@ -135,4 +135,50 @@ public abstract class SCommand extends Command {
      */
     @NotNull
     public abstract List<String> onTabComplete(@NotNull CommandSender sender, String[] args);
+
+    /**
+     * Sets the example usage of this command
+     *
+     * @param usage new example usage
+     * @return this command object, for chaining
+     */
+    @Override
+    public @NotNull Command setUsage(String usage) {
+        this.usage = usage;
+        return this;
+    }
+
+    /**
+     * Sets the message sent when a permission check fails
+     *
+     * @param permissionMessage new permission message, null to indicate
+     *     default message, or an empty string to indicate no message
+     * @return this command object, for chaining
+     */
+    @Override
+    public @NotNull Command setPermissionMessage(String permissionMessage) {
+        this.permissionMessage = permissionMessage;
+        return this;
+    }
+
+    /**
+     * Gets an example usage of this command
+     *
+     * @return One or more example usages
+     */
+    @Override
+    public @NotNull String getUsage() {
+        return usage;
+    }
+
+    /**
+     * Returns a message to be displayed on a failed permission check for this
+     * command
+     *
+     * @return Permission check failed message
+     */
+    @Override
+    public @NotNull String getPermissionMessage() {
+        return permissionMessage;
+    }
 }

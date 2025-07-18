@@ -2,6 +2,7 @@ package pl.serweron.serweronLib.api.ranks.managers;
 
 import pl.serweron.serweronLib.api.ranks.entity.IRankPlayer;
 import pl.serweron.serweronLib.api.ranks.entity.IRank;
+import pl.serweron.serweronLib.utils.Response;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,7 +21,7 @@ public interface IRankManager {
      * @param uuid the UUID of the player
      * @return the IRankPlayer representation for the player
      */
-    IRankPlayer getRankPlayer(UUID uuid);
+    Response<IRankPlayer> getRankPlayer(UUID uuid);
 
     /**
      * Gets the player's highest rank based on weight or priority.
@@ -28,7 +29,7 @@ public interface IRankManager {
      * @param uuid the UUID of the player
      * @return the highest {@link IRank} of the player, or null if none assigned
      */
-    IRank getPlayerHighestRank(UUID uuid);
+    Response<IRank> getPlayerHighestRank(UUID uuid);
 
     /**
      * Checks whether the player has a rank with the specified name.
@@ -37,7 +38,7 @@ public interface IRankManager {
      * @param rankName the name of the rank to check
      * @return true if the player has the rank, false otherwise
      */
-    boolean playerHasRank(UUID uuid, String rankName);
+    Boolean playerHasRank(UUID uuid, String rankName);
 
     /**
      * Checks if the player has a specific permission.
@@ -48,7 +49,7 @@ public interface IRankManager {
      * @param permission the permission node to check
      * @return true if the player has the permission, false otherwise
      */
-    boolean playerHasPermission(UUID uuid, String permission);
+    Boolean playerHasPermission(UUID uuid, String permission);
 
     /**
      * Retrieves the highest-priority prefix for a player.
@@ -56,7 +57,7 @@ public interface IRankManager {
      * @param uuid the UUID of the player
      * @return the prefix string, or null if none found
      */
-    String getPlayerPrefix(UUID uuid);
+    Response<String> getPlayerPrefix(UUID uuid);
 
     /**
      * Retrieves the highest-priority suffix for a player.
@@ -64,7 +65,7 @@ public interface IRankManager {
      * @param uuid the UUID of the player
      * @return the suffix string, or null if none found
      */
-    String getPlayerSuffix(UUID uuid);
+    Response<String> getPlayerSuffix(UUID uuid);
 
     // -------------------- Rank management methods --------------------
 
@@ -72,15 +73,17 @@ public interface IRankManager {
      * Creates and registers a new rank in the system.
      *
      * @param rank the rank to create
+     * @return created rank
      */
-    void createRank(IRank rank);
+    Response<IRank> createRank(IRank rank);
 
     /**
      * Deletes a rank from the system.
      *
      * @param rank the rank to delete
+     * @return whether the operation has been performed
      */
-    void deleteRank(IRank rank);
+    Response<Boolean> deleteRank(IRank rank);
 
     /**
      * Retrieves a rank by its name.
@@ -88,12 +91,5 @@ public interface IRankManager {
      * @param name the name of the rank
      * @return the corresponding {@link IRank}, or null if not found
      */
-    IRank getRank(String name);
-
-    /**
-     * Returns a list of all registered ranks.
-     *
-     * @return a list of all {@link IRank} instances
-     */
-    List<IRank> getAllRanks();
+    Response<IRank> getRank(String name);
 }

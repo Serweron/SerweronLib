@@ -51,12 +51,29 @@ public class Response<T> {
         this.data = data;
     }
 
+    /**
+     * Checks if the answer is success
+     *
+     * @return is the answer success
+     */
     public boolean isSuccess() {
         return this.type == ResponseType.SUCCESS;
     }
+
+    /**
+     * Checks if the answer is failure
+     *
+     * @return is the answer failure
+     */
     public boolean isFailure() {
         return this.type == ResponseType.FAILURE;
     }
+
+    /**
+     * Checks if the answer is not implemented
+     *
+     * @return is the answer not implemented
+     */
     public boolean isNotImplemented() {
         return this.type == ResponseType.NOT_IMPLEMENTED;
     }

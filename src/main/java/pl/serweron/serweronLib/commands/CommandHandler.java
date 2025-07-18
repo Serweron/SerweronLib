@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Handles dynamic registration and management of custom plugin commands using {@link SCommand}.
@@ -31,7 +32,10 @@ public class CommandHandler {
     /** Message displayed when a command is executed from console but requires a player. */
     private String not_console;
 
-    /** Internal registry of all registered commands. */
+    /**
+     * Internal registry of all registered commands.
+     * @return command list
+     */
     @Getter
     private final List<SCommand> commands = new ArrayList<>();
 
@@ -49,6 +53,16 @@ public class CommandHandler {
 
         Bukkit.getServer().getCommandMap().register(plugin.getName(), command);
         commands.add(command);
+    }
+
+    /**
+     * Unregister command (if command has been register in the same instance CommandHandler)
+     *
+     * @param commandName name of command
+     */
+    public void unregisterCommand(String commandName) {
+        SCommand command = getCommandByName(commandName);
+        command.unregister(Bukkit.getServer().getCommandMap());
     }
 
     /**

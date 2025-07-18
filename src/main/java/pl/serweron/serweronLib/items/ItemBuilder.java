@@ -1,5 +1,6 @@
 package pl.serweron.serweronLib.items;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -36,27 +37,27 @@ public class ItemBuilder {
     }
 
     /**
-     * Sets the display name of the item using color codes (prefixed with '&').
+     * Sets the display name of the item using color codes (prefixed with '&amp;').
      *
      * @param name the display name with optional color codes
      * @return the current {@code ItemBuilder} instance for chaining
      */
     public ItemBuilder name(String name) {
-        meta.setDisplayName(ChatColor.translate('&', name));
+        meta.displayName(Component.text(ChatColor.translate('&', name)));
         return this;
     }
 
     /**
      * Sets the lore (description) of the item.
      *
-     * @param lines an array of strings, each representing a lore line (supports '&' color codes)
+     * @param lines an array of strings, each representing a lore line (supports '&amp;' color codes)
      * @return the current {@code ItemBuilder} instance for chaining
      */
     public ItemBuilder lore(String... lines) {
-        List<String> lore = Arrays.stream(lines)
-                .map(s -> ChatColor.translate('&', s))
+        List<Component> lore = Arrays.stream(lines)
+                .map(s -> Component.text(ChatColor.translate('&', s)))
                 .collect(Collectors.toList());
-        meta.setLore(lore);
+        meta.lore(lore);
         return this;
     }
 
