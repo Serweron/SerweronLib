@@ -9,6 +9,17 @@ plugins {
     id("maven-publish")
 }
 
+val sourcesJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
+val javadocJar by tasks.registering(Jar::class) {
+    dependsOn(tasks.javadoc)
+    archiveClassifier.set("javadoc")
+    from(tasks.javadoc)
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -17,6 +28,9 @@ publishing {
             version = version
 
             from(components["java"])
+
+            artifact(sourcesJar.get())
+            artifact(javadocJar.get())
         }
     }
 
