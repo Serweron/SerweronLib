@@ -20,4 +20,18 @@ public class RankAPI {
     @Getter
     @Setter
     private static IRankManager rankManager;
+
+    @Getter
+    private static String pluginName;
+
+    /**
+     * Set rank manager
+     *
+     * @param rankManager rank manager class
+     * @param pluginName name of your plugin
+     */
+    public static void setRankManager(IRankManager rankManager, String pluginName) {
+        RankAPI.rankManager = rankManager;
+        RankAPI.pluginName = pluginName;
+    }
 }

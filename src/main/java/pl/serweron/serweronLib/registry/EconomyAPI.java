@@ -17,6 +17,19 @@ public class EconomyAPI {
      * The globally accessible {@link IEconomyManager} instance used for economy management.
      */
     @Getter
-    @Setter
-    private static IEconomyManager rankManager;
+    private static IEconomyManager economyManager;
+
+    @Getter
+    private static String pluginName;
+
+    /**
+     * Set economy manager
+     *
+     * @param economyManager economy manager class
+     * @param pluginName name of your plugin
+     */
+    public static void setEconomyManager(IEconomyManager economyManager, String pluginName) {
+        EconomyAPI.economyManager = economyManager;
+        EconomyAPI.pluginName = pluginName;
+    }
 }
