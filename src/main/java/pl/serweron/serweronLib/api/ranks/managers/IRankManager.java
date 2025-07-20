@@ -5,6 +5,7 @@ import pl.serweron.serweronLib.api.ranks.entity.IRank;
 import pl.serweron.serweronLib.utils.Response;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -21,7 +22,7 @@ public interface IRankManager {
      * @param uuid the UUID of the player
      * @return the IRankPlayer representation for the player
      */
-    Response<IRankPlayer> getRankPlayer(UUID uuid);
+    Optional<IRankPlayer> getRankPlayer(UUID uuid);
 
     /**
      * Gets the player's highest rank based on weight or priority.
@@ -38,7 +39,7 @@ public interface IRankManager {
      * @param rankName the name of the rank to check
      * @return true if the player has the rank, false otherwise
      */
-    Boolean playerHasRank(UUID uuid, String rankName);
+    Response<Boolean> playerHasRank(UUID uuid, String rankName);
 
     /**
      * Checks if the player has a specific permission.
@@ -49,7 +50,7 @@ public interface IRankManager {
      * @param permission the permission node to check
      * @return true if the player has the permission, false otherwise
      */
-    Boolean playerHasPermission(UUID uuid, String permission);
+    Response<Boolean> playerHasPermission(UUID uuid, String permission);
 
     /**
      * Retrieves the highest-priority prefix for a player.
@@ -91,5 +92,5 @@ public interface IRankManager {
      * @param name the name of the rank
      * @return the corresponding {@link IRank}, or null if not found
      */
-    Response<IRank> getRank(String name);
+    Optional<IRank> getRank(String name);
 }

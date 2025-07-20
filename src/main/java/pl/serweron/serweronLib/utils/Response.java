@@ -3,41 +3,32 @@ package pl.serweron.serweronLib.utils;
 import lombok.Getter;
 
 public class Response<T> {
+
     /**
      * Enum for types of Responses indicating the status of a method call.
      */
     public enum ResponseType {
-        SUCCESS(1),
-        FAILURE(2),
-        NOT_IMPLEMENTED(3);
-
-        private int id;
-
-        ResponseType(int id) {
-            this.id = id;
-        }
-
-        int getId() {
-            return id;
-        }
+        SUCCESS,
+        FAILURE,
+        NOT_IMPLEMENTED;
     }
 
     /**
      * Success or failure of call. Using Enum of ResponseType to determine valid
      * outcomes
      */
-    protected final ResponseType type;
+    private final ResponseType type;
     /**
      * Error message if the variable 'type' is ResponseType.FAILURE
      */
     @Getter
-    protected final String errorMessage;
+    private final String errorMessage;
 
     /**
      * Data object
      */
     @Getter
-    protected final T data;
+    private final T data;
 
     /**
      * Constructor for Response
@@ -77,4 +68,36 @@ public class Response<T> {
     public boolean isNotImplemented() {
         return this.type == ResponseType.NOT_IMPLEMENTED;
     }
+
+    // Factories
+
+    /**
+     * Response success factory
+     *
+     * @param data Data you provide to the user
+     * @return Response
+     * @param <T> Type of data.
+     */
+    public static <T> Response<T> success(T data) {
+        return new Response<>(ResponseType.SUCCESS, null, data);
+    }
+
+    /**
+     * Response failure factory
+     *
+     * @return Response
+     */
+    public static Response<Object> failure(String message) {
+        return new Response<>(ResponseType.FAILURE, message, null);
+    }
+
+    /**
+     * Response notImplemented factory
+     *
+     * @return Response
+     */
+    public static Response<Object> notImplemented() {
+        return new Response<>(ResponseType.NOT_IMPLEMENTED, "Not implemented", null);
+    }
+
 }
