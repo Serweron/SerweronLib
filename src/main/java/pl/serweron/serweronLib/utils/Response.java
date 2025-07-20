@@ -87,7 +87,7 @@ public class Response<T> {
      *
      * @return Response
      */
-    public static Response<Object> failure(String message) {
+    public static <T> Response<T> failure(String message) {
         return new Response<>(ResponseType.FAILURE, message, null);
     }
 
@@ -96,7 +96,7 @@ public class Response<T> {
      *
      * @return Response
      */
-    public static Response<Object> notImplemented() {
+    public static <T> Response<T> notImplemented() {
         return new Response<>(ResponseType.NOT_IMPLEMENTED, "Not implemented", null);
     }
 
