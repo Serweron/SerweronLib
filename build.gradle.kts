@@ -1,5 +1,5 @@
 group = "pl.serweron"
-version = "1.1.8"
+version = "0.5.0"
 val apiVersion = "1.21"
 
 plugins {
@@ -54,7 +54,11 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:1.18.38")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 
-    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.7-R0.1-SNAPSHOT")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.13.3")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.mockito:mockito-core:5.+")
+
+    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
 }
 
 tasks.processResources {
@@ -63,4 +67,7 @@ tasks.processResources {
     expand("pluginVersion" to version, "pluginAPI" to apiVersion)
 }
 
+tasks.test {
+    useJUnitPlatform()
+}
 
