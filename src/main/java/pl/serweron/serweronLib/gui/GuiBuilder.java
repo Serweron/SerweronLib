@@ -99,15 +99,6 @@ public class GuiBuilder {
     }
 
     /**
-     * Builds the GUI and immediately opens it for the specified player.
-     *
-     * @param player the player to open the GUI for
-     */
-    public void open(Player player) {
-        build().open(player);
-    }
-
-    /**
      * Internal class that represents the actual GUI instance built by this builder.
      */
     private class GuiInstance extends Gui {

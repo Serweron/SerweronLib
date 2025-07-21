@@ -17,7 +17,7 @@ public class LibCommand extends SCommand {
     }
     @Override
     public void execute(@NotNull CommandSender sender, String[] args) {
-        sender.sendMessage(String.format("[%s] Vault v%s Information", serweronLib.getPluginMeta().getName(), serweronLib.getPluginMeta().getVersion()));
+        sender.sendMessage(String.format("[%s] SerweronLib v%s Information", serweronLib.getPluginMeta().getName(), serweronLib.getPluginMeta().getVersion()));
         sender.sendMessage(String.format("[%s] Economy: %s", serweronLib.getPluginMeta().getName(), EconomyAPI.getPluginName()));
         sender.sendMessage(String.format("[%s] Ranks: %s", serweronLib.getPluginMeta().getName(), RankAPI.getPluginName()));
     }
