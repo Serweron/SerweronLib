@@ -1,7 +1,7 @@
 package pl.serweron.serweronLib.api.economy.managers;
 
 import pl.serweron.serweronLib.api.economy.entity.IEconomyAccount;
-import pl.serweron.serweronLib.economy.EconomyCurrency;
+import pl.serweron.serweronLib.api.economy.entity.IEconomyCurrency;
 import pl.serweron.serweronLib.utils.Response;
 
 import java.util.List;
@@ -17,9 +17,9 @@ public interface IEconomyManager {
     /**
      * Retrieves the currency used in this economy system.
      *
-     * @return the {@link EconomyCurrency} instance representing the currency
+     * @return the {@link IEconomyCurrency} instance representing the currency
      */
-    EconomyCurrency getCurrency();
+    IEconomyCurrency getCurrency();
 
     /**
      * Fetches the economy account for a given player, if it exists.
