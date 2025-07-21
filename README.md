@@ -1,6 +1,10 @@
-# 📦 How to Add `SerweronLib` to Your Plugin
+## SerweronLib
+The SerweronLib project is a Java Gradle-based library providing a set of tools and APIs 
+designed for the development of Minecraft plugins.
 
-## ✅ 1. Add the Repository
+## 📦 How to Add `SerweronLib` to Your Plugin
+
+### ✅ 1. Add the Repository
 
 In your `build.gradle.kts`, add the Maven repository:
 
@@ -17,7 +21,7 @@ If you're using a -SNAPSHOT version, change the URL to:
 maven("https://maven.pcreators.pl/snapshots")
 ```
 
-## ✅ 2. Add the Dependency
+### ✅ 2. Add the Dependency
 In the dependencies block, add:
 
 ```kotlin
