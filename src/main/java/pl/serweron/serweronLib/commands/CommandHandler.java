@@ -48,7 +48,7 @@ public class CommandHandler {
      */
     public void registerCommand(SCommand command) {
         command.setPermissionMessage(permission_message);
-        command.setUsage(usage_format);
+        command.setUsage(usage_format.replace("{usage}", command.getUsage()));
         command.setNotConsole(not_console);
 
         Bukkit.getServer().getCommandMap().register(plugin.getName(), command);
