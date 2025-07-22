@@ -1,7 +1,7 @@
 package pl.serweron.serweronLib.api.ranks.entity;
 
 import pl.serweron.serweronLib.ranks.MetaData;
-import pl.serweron.serweronLib.ranks.TimedPermission;
+import pl.serweron.serweronLib.ranks.Permission;
 import pl.serweron.serweronLib.utils.Response;
 
 import java.time.Duration;
@@ -56,7 +56,7 @@ public interface IRank {
      * @param permission the permission node (e.g., "essentials.fly")
      * @return Response indicating success or failure
      */
-    Response<String> addPermission(String permission);
+    Response<String> addPermission(Permission permission);
 
     /**
      * Removes a permanent permission from the rank.
@@ -65,15 +65,6 @@ public interface IRank {
      * @return Response indicating success or failure
      */
     Response<String> removePermission(String permission);
-
-    /**
-     * Adds a time-limited permission to the rank.
-     *
-     * @param permission permission node
-     * @param duration   duration the permission is valid
-     * @return Response indicating success or failure
-     */
-    Response<String> addTemporaryPermission(String permission, Duration duration);
 
     /**
      * Checks if the rank has the specified permission.

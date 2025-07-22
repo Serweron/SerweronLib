@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pl.serweron.serweronLib.api.entity.IUser;
 import pl.serweron.serweronLib.ranks.MetaData;
+import pl.serweron.serweronLib.ranks.Permission;
 import pl.serweron.serweronLib.utils.Response;
 
 import java.time.Duration;
@@ -32,7 +33,7 @@ public interface IRankPlayer extends IUser {
      * @param permission permission node
      * @return Response indicating success or error
      */
-    Response<String> addPermission(String permission);
+    Response<String> addPermission(Permission permission);
 
     /**
      * Removes permission from the player.
@@ -41,15 +42,6 @@ public interface IRankPlayer extends IUser {
      * @return Response
      */
     Response<String> removePermission(String permission);
-
-    /**
-     * Adds a temporary permission to the player for a specified duration.
-     *
-     * @param permission permission node
-     * @param duration   how long the permission should last
-     * @return Response
-     */
-    Response<String> addTemporaryPermission(String permission, Duration duration);
 
     /**
      * Checks if the player has a permission.
