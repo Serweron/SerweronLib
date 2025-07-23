@@ -90,16 +90,16 @@ public abstract class Gui implements Listener {
     /**
      * Fills the outer border of the GUI with the provided border element.
      *
-     * @param borderElement The element to be placed in border slots.
+     * @param borderItem The element to be placed in border slots.
      */
-    public void fillBorders(GuiElement borderElement) {
+    public void fillBorders(ItemStack borderItem) {
         for (int x = 0; x < 9; x++) {
-            setGuiElement(new GuiElement(new GuiSlot(x, 0), borderElement.getItem(), borderElement.getOnClick()));
-            setGuiElement(new GuiElement(new GuiSlot(x, 5), borderElement.getItem(), borderElement.getOnClick()));
+            setGuiElement(new GuiElement(new GuiSlot(x, 0), borderItem, (player, gui) -> {}));
+            setGuiElement(new GuiElement(new GuiSlot(x, 5), borderItem, (player, gui) -> {}));
         }
         for (int y = 1; y < 5; y++) {
-            setGuiElement(new GuiElement(new GuiSlot(0, y), borderElement.getItem(), borderElement.getOnClick()));
-            setGuiElement(new GuiElement(new GuiSlot(8, y), borderElement.getItem(), borderElement.getOnClick()));
+            setGuiElement(new GuiElement(new GuiSlot(0, y), borderItem, (player, gui) -> {}));
+            setGuiElement(new GuiElement(new GuiSlot(8, y), borderItem, (player, gui) -> {}));
         }
     }
 

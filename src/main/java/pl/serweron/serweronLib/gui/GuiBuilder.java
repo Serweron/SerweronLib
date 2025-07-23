@@ -61,16 +61,16 @@ public class GuiBuilder {
      * Fills the border slots (top row, bottom row, left and right edges)
      * with the specified border element, unless already filled.
      *
-     * @param borderElement the element to use for the borders
+     * @param borderItem the element to use for the borders
      * @return the current builder instance
      */
-    public GuiBuilder fillBorders(GuiElement borderElement) {
+    public GuiBuilder fillBorders(ItemStack borderItem) {
         for (int y = 0; y < size / 9; y++) {
             for (int x = 0; x < 9; x++) {
                 if (y == 0 || y == (size / 9) - 1 || x == 0 || x == 8) {
                     GuiSlot slot = new GuiSlot(x, y);
                     if (!elements.containsKey(slot)) {
-                        elements.put(slot, new GuiElement(slot, borderElement.getItem(), borderElement.getOnClick()));
+                        elements.put(slot, new GuiElement(slot, borderItem, (player, gui) -> {}));
                     }
                 }
             }
