@@ -1,7 +1,5 @@
 package pl.serweron.serweronLib.api.economy.entity;
 
-import java.math.BigDecimal;
-
 public interface IEconomyCurrency {
 
     /**
@@ -25,5 +23,5 @@ public interface IEconomyCurrency {
      * @param amount the amount to format
      * @return formatted string representation of the amount (e.g., "$1,234.56")
      */
-    String format(BigDecimal amount);
+    String format(double amount);
 }
