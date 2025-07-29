@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.serweron.serweronLib.colors.ChatColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +48,8 @@ public class CommandHandler {
      * @param command the {@link SCommand} instance to register
      */
     public void registerCommand(SCommand command) {
-        command.setPermissionMessage(permission_message);
-        command.setUsage(usage_format.replace("{usage}", command.getUsage()));
-        command.setNotConsole(not_console);
+        command.setPermissionMessage(ChatColor.translate('&', permission_message) );
+        command.setNotConsole(ChatColor.translate('&', not_console));
 
         Bukkit.getServer().getCommandMap().register(plugin.getName(), command);
         commands.add(command);

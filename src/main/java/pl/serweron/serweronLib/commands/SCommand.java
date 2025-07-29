@@ -6,6 +6,9 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.serweron.serweronLib.SerweronLib;
+import pl.serweron.serweronLib.commands.annotations.DefaultNumberOfArgs;
+import pl.serweron.serweronLib.commands.annotations.NotFromConsole;
+import pl.serweron.serweronLib.commands.annotations.Usage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,30 +30,9 @@ public abstract class SCommand extends Command {
     private String notConsole = "";
 
     /**
-     * Whether the command must be executed by a player (not console).
-     */
-    @Getter
-    @Setter
-    private boolean notFromConsole = false;
-
-    /**
-     * Default usage pattern shown to the user.
-     */
-    private String usage = "<args>";
-
-    /**
      * Message shown when a player lacks required permission.
      */
     private String permissionMessage = "";
-
-    /**
-     * Send a command usage to sender
-     *
-     * @param sender Command sender
-     */
-    private void sendUsage(CommandSender sender) {
-        sender.sendMessage(usageMessage.replace("{usage}", usage));
-    }
 
     /**
      * Constructs a new {@code SCommand} instance.
@@ -79,15 +61,25 @@ public abstract class SCommand extends Command {
      */
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
+        if (!(sender instanceof Player) && this.getClass().isAnnotationPresent(NotFromConsole.class)) {
+            sender.sendMessage(getNotConsole());
+            return false;
+        }
+
         if (getPermission() != null) {
             if (sender.hasPermission(getPermission()) || sender.isOp()) {
+                if (args.length < getDefaultNumberOfArgs()) {
+                    sendUsage(sender);
+                    return false;
+                }
+
                 execute(sender, args);
             } else {
                 sender.sendMessage(getPermissionMessage());
             }
         } else {
-            if (!(sender instanceof Player) && notFromConsole) {
-                sender.sendMessage(getNotConsole());
+            if (args.length < getDefaultNumberOfArgs()) {
+                sendUsage(sender);
                 return false;
             }
 
@@ -101,7 +93,15 @@ public abstract class SCommand extends Command {
                 );
             }
         }
-        return false;
+        return true;
+    }
+    private int getDefaultNumberOfArgs() {
+        Class<?> clazz = this.getClass();
+        if (clazz.isAnnotationPresent(DefaultNumberOfArgs.class)) {
+            DefaultNumberOfArgs annotation = (DefaultNumberOfArgs) clazz.getAnnotation(DefaultNumberOfArgs.class);
+            return annotation.number();
+        }
+        return 0;
     }
 
     /**
@@ -137,48 +137,36 @@ public abstract class SCommand extends Command {
     public abstract List<String> onTabComplete(@NotNull CommandSender sender, String[] args);
 
     /**
-     * Sets the example usage of this command
+     * Send a command usage to sender
      *
-     * @param usage new example usage
-     * @return this command object, for chaining
+     * @param sender Command sender
      */
-    @Override
-    public @NotNull Command setUsage(String usage) {
-        this.usage = usage;
-        return this;
+    protected void sendUsage(CommandSender sender) {
+        Class<?> clazz = this.getClass();
+
+        String usageRaw = "/" + getName();
+        if (clazz.isAnnotationPresent(Usage.class)) {
+            usageRaw = clazz.getAnnotation(Usage.class).usage();
+        }
+
+        String messageTemplate = (usageMessage == null || usageMessage.isEmpty())
+                ? "Usage: {usage}" : usageMessage;
+
+        sender.sendMessage(messageTemplate.replace("{usage}", usageRaw));
     }
 
-    /**
-     * Sets the message sent when a permission check fails
-     *
-     * @param permissionMessage new permission message, null to indicate
-     *     default message, or an empty string to indicate no message
-     * @return this command object, for chaining
-     */
-    @Override
-    public @NotNull Command setPermissionMessage(String permissionMessage) {
-        this.permissionMessage = permissionMessage;
-        return this;
-    }
 
     /**
-     * Gets an example usage of this command
+     * Sends a permission message to the command sender.
+     * If no custom message is set, it defaults to a generic permission error.
      *
-     * @return One or more example usages
+     * @param sender the command sender
      */
-    @Override
-    public @NotNull String getUsage() {
-        return usage;
-    }
-
-    /**
-     * Returns a message to be displayed on a failed permission check for this
-     * command
-     *
-     * @return Permission check failed message
-     */
-    @Override
-    public @NotNull String getPermissionMessage() {
-        return permissionMessage;
+    protected void sendPermissionMessage(CommandSender sender) {
+        if (permissionMessage == null || permissionMessage.isEmpty()) {
+            sender.sendMessage("You do not have permission to use this command.");
+        } else {
+            sender.sendMessage(permissionMessage);
+        }
     }
 }
