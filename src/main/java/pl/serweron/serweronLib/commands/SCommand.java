@@ -51,6 +51,23 @@ public abstract class SCommand extends Command {
     }
 
     /**
+     * Constructs a new {@code SCommand} instance.
+     *
+     * @param command     the command label (e.g., "home")
+     * @param aliases     an array of alias names for the command
+     * @param description short description of the command's purpose
+     * @param permission  the required permission to execute the command, or empty for none
+     */
+    protected SCommand(String command, String[] aliases, String description, String permission) {
+        super(command);
+        setAliases(Arrays.asList(aliases));
+        setDescription(description);
+        if (!permission.isEmpty()) {
+            setPermission(permission);
+        }
+    }
+
+    /**
      * Executes the command logic, handling permission and sender restrictions.
      *
      * @param sender the command sender (player or console)
