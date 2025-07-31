@@ -3,9 +3,7 @@ package pl.serweron.serweronLib.commands;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import pl.serweron.serweronLib.SerweronLib;
-import pl.serweron.serweronLib.commands.annotations.DefaultNumberOfArgs;
-import pl.serweron.serweronLib.commands.annotations.NotFromConsole;
-import pl.serweron.serweronLib.commands.annotations.Usage;
+import pl.serweron.serweronLib.commands.annotations.*;
 import pl.serweron.serweronLib.registry.EconomyAPI;
 import pl.serweron.serweronLib.registry.RankAPI;
 
@@ -14,11 +12,12 @@ import java.util.List;
 @NotFromConsole
 @Usage(usage = "siema skibidi dop")
 @DefaultNumberOfArgs(number = 1)
+@CommandData(aliases = {"lib"}, description = "Serweron lib command", permission = "serweronlib.admin")
 public class LibCommand extends SCommand {
     private SerweronLib serweronLib;
 
     public LibCommand(SerweronLib serweronLib) {
-        super("serweronlib", new String[]{"lib"}, "Serweron lib command", "serweronlib.admin");
+        super("serweronlib");
         this.serweronLib = serweronLib;
     }
     @Override

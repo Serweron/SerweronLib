@@ -6,9 +6,7 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.serweron.serweronLib.SerweronLib;
-import pl.serweron.serweronLib.commands.annotations.DefaultNumberOfArgs;
-import pl.serweron.serweronLib.commands.annotations.NotFromConsole;
-import pl.serweron.serweronLib.commands.annotations.Usage;
+import pl.serweron.serweronLib.commands.annotations.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,16 +36,17 @@ public abstract class SCommand extends Command {
      * Constructs a new {@code SCommand} instance.
      *
      * @param command     the command label (e.g., "home")
-     * @param aliases     an array of alias names for the command
-     * @param description short description of the command's purpose
-     * @param permission  the required permission to execute the command, or empty for none
      */
-    protected SCommand(String command, String[] aliases, String description, String permission) {
+    protected SCommand(String command) {
         super(command);
-        setAliases(Arrays.asList(aliases));
-        setDescription(description);
-        if (!permission.isEmpty()) {
-            setPermission(permission);
+
+        // CommandData annotation is used to set command metadata like aliases, description, and permission
+        if (getClass().isAnnotationPresent(CommandData.class)) {
+            CommandData commandData = getClass().getAnnotation(CommandData.class);
+            if (commandData == null) return;
+            setAliases(Arrays.asList(commandData.aliases()));
+            setDescription(commandData.description());
+            setPermission(commandData.permission());
         }
     }
 
