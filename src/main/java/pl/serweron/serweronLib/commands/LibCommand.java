@@ -10,7 +10,6 @@ import pl.serweron.serweronLib.registry.RankAPI;
 import java.util.List;
 
 @NotFromConsole
-@Usage(usage = "siema skibidi dop")
 @DefaultNumberOfArgs(number = 1)
 @CommandData(aliases = {"lib"}, description = "Serweron lib command", permission = "serweronlib.admin")
 public class LibCommand extends SCommand {
