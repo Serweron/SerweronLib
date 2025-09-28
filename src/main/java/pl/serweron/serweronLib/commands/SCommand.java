@@ -160,9 +160,9 @@ public abstract class SCommand extends Command {
     protected void sendUsage(CommandSender sender) {
         Class<?> clazz = this.getClass();
 
-        String usageRaw = "/" + getName();
+        String usageRaw = "/" + getName() + " ";
         if (clazz.isAnnotationPresent(Usage.class)) {
-            usageRaw = clazz.getAnnotation(Usage.class).usage();
+            usageRaw += clazz.getAnnotation(Usage.class).usage();
         }
 
         String messageTemplate = (usageMessage == null || usageMessage.isEmpty())
