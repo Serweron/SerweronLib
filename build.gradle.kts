@@ -1,5 +1,5 @@
 group = "pl.serweron"
-version = "0.5.4"
+version = "0.5.5"
 val apiVersion = "1.21"
 
 plugins {
@@ -59,6 +59,9 @@ repositories {
     maven {
         url = uri("https://repo.papermc.io/repository/maven-public/")
     }
+    maven {
+        url = uri("https://jitpack.io")
+    }
 }
 
 dependencies {
@@ -72,6 +75,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.mockito:mockito-core:5.+")
 
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
 }
 
