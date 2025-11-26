@@ -1,7 +1,6 @@
 package pl.serweron.serweronLib.api.punishments;
 
 import pl.serweron.serweronLib.punishments.Punishment;
-import pl.serweron.serweronLib.punishments.PunishmentScope;
 import pl.serweron.serweronLib.punishments.PunishmentType;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.UUID;
  * Centralizes logic for bans, mutes, warns, kicks, and IP-based actions.
  * Supports filtering, history lookup, and active state checks.
  */
-public interface PunishmentManager {
+public interface IPunishmentManager {
 
     // === BANS ===
 
@@ -23,10 +22,9 @@ public interface PunishmentManager {
      * @param player Target player UUID.
      * @param staff Staff member UUID issuing the ban.
      * @param reason Reason for the ban.
-     * @param scope Scope of punishment (e.g., server-wide or global).
      * @return Created PunishmentRecord representing the ban.
      */
-    Punishment banUser(UUID player, UUID staff, String reason, PunishmentScope scope);
+    Punishment banUser(UUID player, UUID staff, String reason);
 
     /**
      * Apply a temporary ban to a user.
@@ -35,20 +33,17 @@ public interface PunishmentManager {
      * @param staff Staff member UUID issuing the ban.
      * @param reason Reason for the ban.
      * @param durationMillis Duration of the ban in milliseconds.
-     * @param scope Scope of punishment.
      * @return Created PunishmentRecord representing the temporary ban.
      */
-    Punishment tempBanUser(UUID player, UUID staff, String reason, long durationMillis, PunishmentScope scope);
+    Punishment tempBanUser(UUID player, UUID staff, String reason, long durationMillis);
 
     /**
      * Remove an active ban from a user.
      *
      * @param player Target player UUID.
-     * @param staff Staff member UUID removing the ban.
-     * @param reason Reason for unbanning.
      * @return true if the ban was successfully removed, false otherwise.
      */
-    boolean unbanUser(UUID player, UUID staff, String reason);
+    boolean unbanUser(UUID player);
 
     /**
      * Check if a user is currently banned.
@@ -57,6 +52,16 @@ public interface PunishmentManager {
      * @return true if the player is banned, false otherwise.
      */
     boolean isBanned(UUID player);
+
+    /**
+     * Apply an IP-based ban.
+     *
+     * @param player Target player UUID.
+     * @param staff Staff member UUID issuing the IP ban.
+     * @param reason Reason for the IP ban.
+     * @return Created PunishmentRecord representing the IP ban.
+     */
+    Punishment ipBan(UUID player, UUID staff, String reason);
 
     /**
      * Apply an IP-based ban.
@@ -71,12 +76,20 @@ public interface PunishmentManager {
     /**
      * Remove an active IP-based ban.
      *
-     * @param ip Target IP address.
+     * @param player Target player UUID.
      * @param staff Staff member UUID removing the IP ban.
-     * @param reason Reason for unbanning.
      * @return true if the IP ban was successfully removed, false otherwise.
      */
-    boolean unIpBan(String ip, UUID staff, String reason);
+    boolean unIpBan(UUID player, UUID staff);
+
+    /**
+     * Remove an active IP-based ban.
+     *
+     * @param ip Target IP address.
+     * @param staff Staff member UUID removing the IP ban.
+     * @return true if the IP ban was successfully removed, false otherwise.
+     */
+    boolean unIpBan(String ip, UUID staff);
 
 
     // === MUTES ===
@@ -87,10 +100,9 @@ public interface PunishmentManager {
      * @param player Target player UUID.
      * @param staff Staff member UUID issuing the mute.
      * @param reason Reason for the mute.
-     * @param scope Scope of punishment.
      * @return Created PunishmentRecord representing the mute.
      */
-    Punishment muteUser(UUID player, UUID staff, String reason, PunishmentScope scope);
+    Punishment muteUser(UUID player, UUID staff, String reason);
 
     /**
      * Apply a temporary mute to a user.
@@ -99,20 +111,17 @@ public interface PunishmentManager {
      * @param staff Staff member UUID issuing the mute.
      * @param reason Reason for the mute.
      * @param durationMillis Duration of the mute in milliseconds.
-     * @param scope Scope of punishment.
      * @return Created PunishmentRecord representing the temporary mute.
      */
-    Punishment tempMuteUser(UUID player, UUID staff, String reason, long durationMillis, PunishmentScope scope);
+    Punishment tempMuteUser(UUID player, UUID staff, String reason, long durationMillis);
 
     /**
      * Remove an active mute from a user.
      *
      * @param player Target player UUID.
-     * @param staff Staff member UUID removing the mute.
-     * @param reason Reason for unmuting.
      * @return true if the mute was successfully removed, false otherwise.
      */
-    boolean unmuteUser(UUID player, UUID staff, String reason);
+    boolean unmuteUser(UUID player);
 
     /**
      * Check if a user is currently muted.
@@ -139,11 +148,9 @@ public interface PunishmentManager {
      * Remove a warning from a user.
      *
      * @param player Target player UUID.
-     * @param staff Staff member UUID removing the warning.
-     * @param reason Reason for unwarning.
      * @return true if the warning was successfully removed, false otherwise.
      */
-    boolean unwarnUser(UUID player, UUID staff, String reason);
+    boolean unwarnUser(UUID player);
 
     /**
      * Check if a user has any active warnings.

@@ -2,10 +2,10 @@ package pl.serweron.serweronLib.registry;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.serweron.serweronLib.api.punishments.PunishmentManager;
+import pl.serweron.serweronLib.api.punishments.IPunishmentManager;
 
 /**
- * Central access point (Vault‑style) for the unified {@link PunishmentManager}.
+ * Central access point (Vault‑style) for the unified {@link IPunishmentManager}.
  * <p>
  * External plugins can call this class to integrate with your punishment system
  * without depending on implementation details.
@@ -16,7 +16,7 @@ public class PunishmentAPI {
      * The globally registered punishment manager.
      */
     @Getter @Setter
-    private static PunishmentManager manager;
+    private static IPunishmentManager manager;
 
     /**
      * The name of the plugin providing the implementation.
@@ -28,9 +28,9 @@ public class PunishmentAPI {
      * Registers the punishment manager.
      *
      * @param pluginName Name of the providing plugin.
-     * @param manager Implementation instance of {@link PunishmentManager}.
+     * @param manager Implementation instance of {@link IPunishmentManager}.
      */
-    public static void register(String pluginName, PunishmentManager manager) {
+    public static void register(String pluginName, IPunishmentManager manager) {
         PunishmentAPI.manager = manager;
         PunishmentAPI.providerPluginName = pluginName;
     }
