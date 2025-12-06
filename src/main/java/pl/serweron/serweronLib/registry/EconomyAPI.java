@@ -2,7 +2,6 @@ package pl.serweron.serweronLib.registry;
 
 import lombok.Getter;
 import pl.serweron.serweronLib.api.economy.managers.IEconomyManager;
-import pl.serweron.serweronLib.economy.VaultEconomyBridge;
 
 /**
  * Provides static access to the {@link IEconomyManager} instance.
@@ -20,9 +19,6 @@ public class EconomyAPI {
     private static IEconomyManager economyManager;
 
     @Getter
-    private static VaultEconomyBridge vaultEconomyBridge;
-
-    @Getter
     private static String pluginName;
 
     /**
@@ -34,7 +30,5 @@ public class EconomyAPI {
     public static void setEconomyManager(IEconomyManager economyManager, String pluginName) {
         EconomyAPI.economyManager = economyManager;
         EconomyAPI.pluginName = pluginName;
-        EconomyAPI.vaultEconomyBridge = new VaultEconomyBridge(pluginName, economyManager);
-
     }
 }

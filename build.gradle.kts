@@ -74,8 +74,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.13.3")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.mockito:mockito-core:5.+")
-
-    compileOnly("com.github.MilkBowl:VaultAPI:1.7")
     paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.21.1-R0.1-SNAPSHOT")
 }
 
