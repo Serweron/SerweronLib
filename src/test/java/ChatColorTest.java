@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import pl.serweron.serweronLib.colors.ChatColor;
+import pl.serweron.serweronLib.utils.colors.ChatColor;
 
 public class ChatColorTest {
 

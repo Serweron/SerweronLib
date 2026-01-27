@@ -1,15 +1,14 @@
-package pl.serweron.serweronLib.commands;
+package pl.serweron.serweronLib.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.serweron.serweronLib.colors.ChatColor;
+import pl.serweron.serweronLib.utils.colors.ChatColor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Handles dynamic registration and management of custom plugin commands using {@link SCommand}.

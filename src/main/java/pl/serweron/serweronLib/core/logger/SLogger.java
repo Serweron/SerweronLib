@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.logger;
+package pl.serweron.serweronLib.core.logger;
 
 import org.bukkit.plugin.Plugin;
 import java.util.HashMap;

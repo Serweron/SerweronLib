@@ -3,7 +3,7 @@ package pl.serweron.serweronLib.langs;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.serweron.serweronLib.api.managers.ILangManager;
-import pl.serweron.serweronLib.colors.ChatColor;
+import pl.serweron.serweronLib.utils.colors.ChatColor;
 
 import java.io.File;
 import java.io.IOException;

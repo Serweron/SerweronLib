@@ -1,9 +1,9 @@
-package pl.serweron.serweronLib.commands;
+package pl.serweron.serweronLib.command;
 
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import pl.serweron.serweronLib.SerweronLib;
-import pl.serweron.serweronLib.commands.annotations.*;
+import pl.serweron.serweronLib.command.annotations.*;
 import pl.serweron.serweronLib.registry.EconomyAPI;
 import pl.serweron.serweronLib.registry.RankAPI;
 

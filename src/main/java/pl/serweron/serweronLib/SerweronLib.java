@@ -2,8 +2,8 @@ package pl.serweron.serweronLib;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.serweron.serweronLib.commands.CommandHandler;
-import pl.serweron.serweronLib.commands.LibCommand;
+import pl.serweron.serweronLib.command.CommandHandler;
+import pl.serweron.serweronLib.command.LibCommand;
 
 public final class SerweronLib extends JavaPlugin {
 

@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.commands;
+package pl.serweron.serweronLib.command;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import pl.serweron.serweronLib.SerweronLib;
-import pl.serweron.serweronLib.commands.annotations.*;
+import pl.serweron.serweronLib.command.annotations.*;
 
 import java.util.Arrays;
 import java.util.List;

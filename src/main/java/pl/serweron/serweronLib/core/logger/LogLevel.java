@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.logger;
+package pl.serweron.serweronLib.core.logger;
 
 /**
  * Enumeration representing different levels of logging severity.

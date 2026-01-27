@@ -9,7 +9,7 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.serweron.serweronLib.colors.ChatColor;
+import pl.serweron.serweronLib.utils.colors.ChatColor;
 
 import java.util.Arrays;
 import java.util.List;

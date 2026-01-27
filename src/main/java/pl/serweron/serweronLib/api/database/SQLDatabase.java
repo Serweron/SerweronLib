@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.api.databases;
+package pl.serweron.serweronLib.api.database;
 
 import java.sql.Connection;
 import java.sql.SQLException;

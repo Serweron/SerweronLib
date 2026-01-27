@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.api.databases;
+package pl.serweron.serweronLib.api.database;
 
 /**
  * Interface for handling basic database connection operations.

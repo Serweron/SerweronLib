@@ -4,9 +4,6 @@ import pl.serweron.serweronLib.ranks.MetaData;
 import pl.serweron.serweronLib.ranks.Permission;
 import pl.serweron.serweronLib.utils.Response;
 
-import java.time.Duration;
-import java.util.List;
-
 /**
  * Represents a single rank definition in the system.
  * A rank consists of its name, metadata, weight (priority), and assigned permissions.

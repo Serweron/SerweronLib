@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.commands.annotations;
+package pl.serweron.serweronLib.command.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
