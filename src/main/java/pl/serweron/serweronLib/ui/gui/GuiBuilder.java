@@ -1,7 +1,6 @@
-package pl.serweron.serweronLib.gui;
+package pl.serweron.serweronLib.ui.gui;
 
 import lombok.RequiredArgsConstructor;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 

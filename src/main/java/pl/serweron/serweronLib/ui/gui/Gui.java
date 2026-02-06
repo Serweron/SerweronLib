@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.gui;
+package pl.serweron.serweronLib.ui.gui;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;

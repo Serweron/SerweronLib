@@ -1,33 +1,29 @@
 package pl.serweron.serweronLib.command;
 
-import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import pl.serweron.serweronLib.SerweronLib;
-import pl.serweron.serweronLib.command.annotations.*;
-import pl.serweron.serweronLib.registry.EconomyAPI;
-import pl.serweron.serweronLib.registry.RankAPI;
+import pl.serweron.serweronLib.command.annotations.Aliases;
+import pl.serweron.serweronLib.command.annotations.Description;
+import pl.serweron.serweronLib.command.annotations.Permission;
+import pl.serweron.serweronLib.command.command.BaseCommand;
+import pl.serweron.serweronLib.command.context.CommandContext;
+import pl.serweron.serweronLib.registry.GlobalRegistry;
 
 import java.util.List;
 
-@NotFromConsole
-@DefaultNumberOfArgs(number = 1)
-@CommandData(aliases = {"lib"}, description = "Serweron lib command", permission = "serweronlib.admin")
-public class LibCommand extends SCommand {
-    private SerweronLib serweronLib;
+@Aliases("lib")
+@Description("Serweron lib command")
+@Permission("serweronlib.admin")
+public class LibCommand extends BaseCommand {
 
     public LibCommand(SerweronLib serweronLib) {
-        super("serweronlib");
-        this.serweronLib = serweronLib;
-    }
-    @Override
-    public void execute(@NotNull CommandSender sender, String[] args) {
-        sender.sendMessage(String.format("[%s] SerweronLib v%s Information", serweronLib.getPluginMeta().getName(), serweronLib.getPluginMeta().getVersion()));
-        sender.sendMessage(String.format("[%s] Economy: %s", serweronLib.getPluginMeta().getName(), EconomyAPI.getPluginName()));
-        sender.sendMessage(String.format("[%s] Ranks: %s", serweronLib.getPluginMeta().getName(), RankAPI.getPluginName()));
+        super("serweronlib", serweronLib);
     }
 
     @Override
-    public @NotNull List<String> onTabComplete(@NotNull CommandSender sender, String[] args) {
-        return List.of();
+    protected void execute(@NotNull CommandContext ctx) {
+        ctx.getSender().sendMessage(String.format("[%s] SerweronLib v%s Information", ctx.getPlugin().getPluginMeta().getName(), ctx.getPlugin().getPluginMeta().getVersion()));
+        ctx.getSender().sendMessage(String.format("[%s] Economy: %s", ctx.getPlugin().getPluginMeta().getName(), GlobalRegistry.getEconomyManagerPluginName()));
+        ctx.getSender().sendMessage(String.format("[%s] Ranks: %s", ctx.getPlugin().getPluginMeta().getName(), GlobalRegistry.getRankMangerPluginName()));
     }
 }

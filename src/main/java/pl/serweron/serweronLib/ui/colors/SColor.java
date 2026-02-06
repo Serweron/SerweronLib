@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.utils.colors;
+package pl.serweron.serweronLib.ui.colors;
 
 import lombok.Getter;
 import org.bukkit.Material;

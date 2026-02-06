@@ -2,7 +2,7 @@ package pl.serweron.serweronLib;
 
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
-import pl.serweron.serweronLib.command.CommandHandler;
+import pl.serweron.serweronLib.command.engine.CommandHandler;
 import pl.serweron.serweronLib.command.LibCommand;
 
 public final class SerweronLib extends JavaPlugin {
@@ -18,11 +18,12 @@ public final class SerweronLib extends JavaPlugin {
         // Plugin startup logic
         instance = this;
 
-        commandHandler = new CommandHandler(this,
-                "&eYou do not have permission to execute this command.",
-                "&cUsage: {usage}",
-                "&eYou cannot execute this command from the console.");
-        commandHandler.registerCommand(new LibCommand(this));
+
+        commandHandler = new CommandHandler(this)
+            .permissionMessage("&eYou do not have permission to execute this command.")
+            .consoleOnlyMessage("&eYou cannot execute this command from the console.")
+            .playerOnlyMessage("&eYou cannot execute this command by player.");
+        commandHandler.register(new LibCommand(this));
         getLogger().info("SerweronLib is enabled");
     }
 

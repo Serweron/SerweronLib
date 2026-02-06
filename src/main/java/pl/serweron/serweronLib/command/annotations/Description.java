@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface DefaultNumberOfArgs {
-    int number();
+public @interface Description {
+    String value();
 }

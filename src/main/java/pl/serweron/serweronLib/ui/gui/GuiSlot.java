@@ -1,4 +1,4 @@
-package pl.serweron.serweronLib.gui;
+package pl.serweron.serweronLib.ui.gui;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
